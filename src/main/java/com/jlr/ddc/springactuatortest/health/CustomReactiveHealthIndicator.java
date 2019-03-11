@@ -1,10 +1,16 @@
 package com.jlr.ddc.springactuatortest.health;
 
-// @Component
-public class CustomReactiveHealthIndicator {
+import org.springframework.boot.actuate.health.Health;
+import org.springframework.boot.actuate.health.ReactiveHealthIndicator;
+import org.springframework.stereotype.Component;
 
-  // @Override
-  // public Mono<Health> health() {
-  //   return Mono.just(new Health.Builder().down().build());
-  // }
+import reactor.core.publisher.Mono;
+
+@Component
+public class CustomReactiveHealthIndicator implements ReactiveHealthIndicator {
+
+  @Override
+  public Mono<Health> health() {
+    return Mono.just(new Health.Builder().down().build());
+  }
 }
